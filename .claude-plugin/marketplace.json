@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "azrsh",
+  "description": "Personal agent plugins shared by Claude Code and Codex CLI",
+  "owner": {
+    "name": "azrsh"
+  },
+  "plugins": [
+    {
+      "name": "subagent-orchestration",
+      "description": "Operational policy for delegating work to subagents: model and effort routing, one planning sidecar before implementation, parallel workers over disjoint ownership slices, and a read-only self-review gate before committing.",
+      "author": {
+        "name": "azrsh"
+      },
+      "source": "./plugins/subagent-orchestration",
+      "category": "development"
+    },
+    {
+      "name": "engineering-practices",
+      "description": "Practices for durable project knowledge: where documentation belongs, ADRs in Nygard format, shared abstraction boundary reviews, and turning correction loops into guardrails.",
+      "author": {
+        "name": "azrsh"
+      },
+      "source": "./plugins/engineering-practices",
+      "category": "development"
+    }
+  ]
+}

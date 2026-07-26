@@ -1,0 +1,4 @@
+interface:
+  display_name: "Planning Sidecar"
+  short_description: "Route one risk-based planning subagent"
+  default_prompt: "Use $planning-sidecar to decide whether this task needs a risk-routed planning subagent before implementation."

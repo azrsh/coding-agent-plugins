@@ -1,0 +1,8 @@
+{
+  "name": "subagent-orchestration",
+  "version": "0.1.0",
+  "description": "Operational policy for delegating work to subagents: model and effort routing, one planning sidecar before implementation, parallel workers over disjoint ownership slices, and a read-only self-review gate before committing.",
+  "author": {
+    "name": "azrsh"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Self Review"
+  short_description: "Run risk-routed read-only diff reviews"
+  default_prompt: "Use $self-review to risk-route a fresh read-only review of the current diff before committing."

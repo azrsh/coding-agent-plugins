@@ -1,0 +1,4 @@
+interface:
+  display_name: "Subagent Routing"
+  short_description: "Route subagents by capability and effort"
+  default_prompt: "Use $subagent-routing to select a model, effort, fork, and slot before spawning a subagent."
