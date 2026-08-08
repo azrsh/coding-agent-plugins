@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "subagent-orchestration",
-      "description": "Operational policy for delegating work to subagents: model and effort routing, one planning sidecar before implementation, parallel workers over disjoint ownership slices, and a read-only self-review gate before committing.",
+      "description": "Operational policy for delegating work to subagents: model and effort routing, one planning sidecar before implementation, parallel workers over disjoint ownership slices, and a risk-gated read-only self-review before committing.",
       "author": {
         "name": "azrsh"
       },
@@ -17,11 +17,29 @@
     },
     {
       "name": "engineering-practices",
-      "description": "Practices for durable project knowledge and reviewable change design: documentation placement, ADRs, abstraction boundaries, PR stacking, and correction guardrails.",
+      "description": "Cross-cutting practices for shaping changes, maintaining artifact boundaries and project knowledge, recording decisions, and keeping changes reviewable.",
       "author": {
         "name": "azrsh"
       },
       "source": "./plugins/engineering-practices",
+      "category": "development"
+    },
+    {
+      "name": "agent-authoring",
+      "description": "Workflows for maintaining AGENTS.md and CLAUDE.md against current provider guidance.",
+      "author": {
+        "name": "azrsh"
+      },
+      "source": "./plugins/agent-authoring",
+      "category": "development"
+    },
+    {
+      "name": "technical-communication",
+      "description": "Source-grounded technical communication practices for architecture diagrams and system explanations.",
+      "author": {
+        "name": "azrsh"
+      },
+      "source": "./plugins/technical-communication",
       "category": "development"
     }
   ]

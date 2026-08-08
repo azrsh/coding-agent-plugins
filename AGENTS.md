@@ -27,6 +27,18 @@ when a change invalidates it.
    marketplace entry agree.
 5. Restart both CLIs and exercise one component in each.
 
+## Writing style for skills
+
+Write skills as judgment criteria, not procedures: state the outcome, the boundaries that must not
+be crossed, and the completion standard, and leave the path to the model. Current frontier models
+degrade under prescriptive step lists and blanket gates.
+
+When adding or revising a skill, apply the no-op test to every sentence: if deleting it would not
+change the model's behavior, delete it. Phrase instructions positively — state the target behavior
+rather than prohibiting the failure — and reserve absolute wording for hard boundaries such as
+security, permissions, and data loss. The `writing-for-agents` skill from the mattpocock-skills
+plugin is the fuller reference for this style when that plugin is installed.
+
 ## Skills that reference other skills
 
 Keep a skill's references to other skills inside the same plugin, and write each reference with a

@@ -1,6 +1,6 @@
 ---
 name: planning-sidecar
-description: Decide whether to run one planning-only subagent before implementation when the user explicitly requests planning delegation, invokes this skill, grants standing permission for planning subagents, or repository instructions authorize them. Use for broad, ambiguous, architectural, risky, multi-path, documentation-heavy, or high-blast-radius work where an independent planning pass can identify scope, evidence, unresolved decisions, and verification before edits begin.
+description: Decide whether to run one planning-only subagent before implementation when the user explicitly requests planning delegation, invokes this skill, grants standing permission for planning subagents, or repository instructions authorize them. Use for broad, ambiguous, architectural, risky, multi-path, documentation-heavy, or high-blast-radius work where an independent planning pass can identify scope, evidence, unresolved decisions, and verification before edits begin, and after two or more failed fixes for the same behavior, where an independent root-cause pass should replace another fix attempt.
 ---
 
 # Planning Sidecar
@@ -10,6 +10,8 @@ description: Decide whether to run one planning-only subagent before implementat
 Confirm planning subagents are authorized by the user, the current conversation, or repository instructions. Do not treat this skill's existence as authorization.
 
 Run one planning-only subagent when independent investigation would materially improve the plan, especially for ambiguous scope, architectural boundaries, conflicting implementation paths, required ADR or project-document research, or high-blast-radius changes.
+
+Also run one before the next fix attempt when two or more fixes for the same behavior have failed. Repeated failed fixes are evidence that the diagnosis, not the implementation, is wrong; have the sidecar re-derive the root cause from scratch and question whether the surrounding design is sound, instead of attempting another fix on the same theory.
 
 Skip the subagent for small, clear, routine work or when it cannot perform useful read-only investigation. State the decision briefly before editing.
 

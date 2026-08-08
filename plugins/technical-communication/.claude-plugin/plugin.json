@@ -1,0 +1,8 @@
+{
+  "name": "technical-communication",
+  "version": "0.2.0",
+  "description": "Source-grounded technical communication practices for architecture diagrams and system explanations.",
+  "author": {
+    "name": "azrsh"
+  }
+}

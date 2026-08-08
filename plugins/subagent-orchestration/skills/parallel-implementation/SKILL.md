@@ -47,10 +47,13 @@ Before spawning workers, write a short ownership map:
 - Worker mode: editing or read-only research.
 - Owned files/modules.
 - Explicit non-owned files/modules.
+- Interface contract: the exact signatures the slice consumes from neighboring slices or existing code, and the exact function names, parameter types, and return types other slices rely on it to produce.
 - Expected output.
 - Difficulty tier and classification evidence.
 - Requested subagent route and current slot budget.
 - Focused verification the worker should run if practical.
+
+Each worker sees only its own slice; the interface contract is how a worker learns the names and types its neighbors use. Ownership prevents workers from colliding on files, and the interface contract prevents them from colliding on the boundary between slices.
 
 If slices cannot be made mostly disjoint, do not parallelize implementation. Use parallel exploration only, then implement serially.
 
@@ -98,6 +101,10 @@ Mode:
 Ownership:
 - You own: <files/modules>
 - Do not edit: <files/modules owned by others or unrelated dirty work>
+
+Interfaces:
+- Consumes: <exact signatures this slice uses from other slices or existing code>
+- Produces: <exact function names, parameter and return types other slices rely on; do not rename or change these without reporting back>
 
 Repository constraints:
 - You are not alone in the codebase. Do not revert changes made by others.
