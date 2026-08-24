@@ -10,7 +10,7 @@ registered twice.
 | Plugin | Contents |
 | --- | --- |
 | `subagent-orchestration` | `subagent-routing`, `planning-sidecar`, `parallel-implementation`, `self-review` |
-| `engineering-practices` | `documentation-principles`, `adr`, `abstraction-boundaries`, `retrospective-capture` |
+| `engineering-practices` | `documentation-principles`, `adr`, `abstraction-boundaries`, `retrospective-capture`, `reviewable-change-stacking` |
 
 ## Register the marketplace
 

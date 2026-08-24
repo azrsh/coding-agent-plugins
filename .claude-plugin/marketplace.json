@@ -17,7 +17,7 @@
     },
     {
       "name": "engineering-practices",
-      "description": "Practices for durable project knowledge: where documentation belongs, ADRs in Nygard format, shared abstraction boundary reviews, and turning correction loops into guardrails.",
+      "description": "Practices for durable project knowledge and reviewable change design: documentation placement, ADRs, abstraction boundaries, PR stacking, and correction guardrails.",
       "author": {
         "name": "azrsh"
       },
