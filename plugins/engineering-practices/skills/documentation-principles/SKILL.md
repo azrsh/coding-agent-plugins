@@ -1,64 +1,59 @@
 ---
 name: documentation-principles
-description: Use before changing documentation or encoding project knowledge into docs, ADRs, AGENTS.md, skills, setup docs, integration docs, known issues, or code comments. Applies source-of-truth boundaries and prevents stale implementation summaries.
+description: Use when deciding where project knowledge belongs, preventing duplicated sources of truth, or restructuring knowledge across documentation, ADRs, agent instructions, skills, proposals, logs, and code comments.
 ---
 
 # Documentation Principles
 
-Use this skill when encoding project knowledge into documentation, ADRs, repo-local skills, AGENTS.md, or code comments.
+Apply `maintained-artifact-principle` to establish each knowledge unit's
+authority, lifetime, and `source`, `projection`, or `verification` role. This
+skill owns the documentation-specific questions of placement and retrieval.
 
-## Goal
+## Placement
 
-Help future agents and developers reach the right knowledge at the moment they need it, without creating a stale second copy of the implementation.
+Treat a mixed request as separate knowledge units. For each unit, identify:
 
-## Workflow
+- the source that determines whether it is true;
+- the event that would make it stale;
+- the reader and decision it supports;
+- whether it is current guidance, a dated record, or executable behavior;
+- the next task or trigger that must retrieve it.
 
-1. Identify the kind of knowledge being encoded.
-2. Choose the smallest durable container for that knowledge.
-3. Avoid duplicating behavior that is obvious from the source and test trees.
-4. Add or update reading triggers in the repository's agent instructions (`AGENTS.md`, or `CLAUDE.md` when that is the entry point) only when future agents need conditional guidance.
-5. If a code change invalidates setup instructions, ADR consequences, known issues, or todo items, update the relevant document in the same unit of work.
+Choose the smallest durable container that is loaded for that trigger. A
+separate document earns its maintenance cost when it serves a distinct reader,
+decision, or lifetime. Otherwise update the existing source or add only the
+retrieval pointer needed to reach it.
 
-## Source of Truth
+Use these source roles:
 
-Code is the source of truth for current behavior.
+- Code, configuration, schemas, and scripts own executable behavior.
+- Tests and CI own independent verification and supported check commands.
+- ADRs own durable decisions and their consequences.
+- README, setup, and integration guides own human-facing usage and external
+  configuration.
+- Proposals and todo documents own intended or future work.
+- Dated logs and incident records preserve what was known at a point in time;
+  they are not current specifications.
+- Skills and agent instructions own non-obvious executable agent behavior.
 
-ADRs explain durable architectural decisions and their consequences.
+## Human-Facing Documents
 
-Setup and integration docs explain external configuration and operational knowledge.
+Source-of-truth discipline does not justify removing the procedures, examples,
+URLs, and command snippets that make an operational document useful. Preserve
+that detail unless it is wrong, stale, or duplicated by a better nearby source.
 
-The repository's todo document tracks future work.
+## Retrieval
 
-Superseded design documents are historical context, not current specification.
+Use names and headings that readers will search for. When knowledge matters only
+for a conditional task, add a concise trigger in the nearest agent instruction
+file or skill description rather than requiring every document to be read.
 
-## Placement Rules
+Project-specific workflows belong with the project. Cross-project workflows
+belong in a user-level or installed skill only when their references and
+assumptions remain valid outside the source project.
 
-Put durable decisions in ADRs.
+## Completion
 
-Put procedures in setup docs.
-
-Put third-party service configuration in service-specific docs.
-
-Put verification caveats in known issues.
-
-Put future work in the repository's todo document.
-
-Put reusable agent workflows in repo-local skills under the repository's skills directory, as `<skills-dir>/<skill-name>/SKILL.md`.
-
-## Retrieval Rules
-
-Use file names and headings future agents are likely to search for, such as `setup`, `known issues`, `rules`, `ADR`, or the name of the external service the document configures.
-
-When a document matters only for certain work, add a short trigger in the agent instructions instead of expecting agents to read every document.
-
-## What Not to Do
-
-Do not create broad `current-state` documents that summarize the whole implementation. They become stale quickly. If a capability is easy to verify from code, let code be the reference.
-
-Do not document a complete inventory of files, types, or functions unless the structure itself is a decision or a non-obvious operational contract.
-
-Do not copy implementation logic into prose as a current-state summary.
-
-Do not use historical documents as current specification. Link to ADRs and code instead.
-
-Do not add new docs when a short agent-instruction trigger, ADR update, todo item, or skill update is enough.
+Documentation work is complete when every added statement has a source and a
+retrieval purpose, every affected current document is updated, and no second
+hand-maintained copy claims authority over the same knowledge.

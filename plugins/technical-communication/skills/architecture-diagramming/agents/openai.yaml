@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Diagramming"
+  short_description: "Plan and verify architecture diagrams"
+  default_prompt: "Use $architecture-diagramming to create a clear, source-grounded architecture diagram."

@@ -1,6 +1,6 @@
 ---
 name: self-review
-description: Run a review-only subagent over the current unit-of-work diff before committing non-trivial code, test, documentation, ADR, or repo-local skill changes. Use when a coherent implementation unit is ready for commit; skip only for read-only answers, tiny typo fixes, or purely mechanical changes where the user explicitly does not want review.
+description: Run a review-only subagent over the current unit-of-work diff before committing when the change crosses a high-risk boundary, follows repeated failed fix cycles, concludes a long autonomous run, or when the user or repository instructions explicitly request review. Do not add a reviewer subagent to ordinary diffs with no high-risk boundary; current models verify routine work themselves.
 ---
 
 # Self Review
@@ -11,15 +11,16 @@ Use this skill as a final quality gate before committing a meaningful unit of wo
 
 ## Decision Rules
 
-Run self-review before committing any non-trivial unit of work that changes behavior, tests, project instructions, docs, ADRs, repo-local skills, or multiple files.
+Run self-review before committing when at least one of these holds:
 
-Skip self-review only for:
+- The diff crosses one or more high-risk boundaries (defined below).
+- Two or more fix or review cycles for the same behavior have already failed.
+- The unit of work concludes a long autonomous run whose intermediate output the user has not been reviewing.
+- The user or repository instructions explicitly request a review.
 
-- Read-only answers with no repository changes.
-- Tiny typo fixes with no behavioral or process impact.
-- Purely mechanical changes where the user explicitly does not want review.
+Otherwise skip the reviewer subagent and rely on the model's own verification. A mandatory reviewer on ordinary diffs causes over-verification: it adds cost and latency without improving quality on current models.
 
-If subagent tools are unavailable, report that the self-review could not be performed. Do not invent a subagent review.
+If a review is warranted but subagent tools are unavailable, report that the self-review could not be performed. Do not invent a subagent review.
 
 Run self-review only after:
 
@@ -29,7 +30,7 @@ Run self-review only after:
 
 Use `$subagent-routing` as the source of truth for runtime model resolution, fork rules, and slot lifecycle. Select a logical review route from the risk classification below, then follow `$subagent-routing` without hard-pinning a model ID or reproducing its routing algorithm:
 
-- `frontier-medium`: an ordinary non-trivial diff with no high-risk boundary.
+- `frontier-medium`: a review triggered by a long autonomous run or an explicit request, with no high-risk boundary.
 - `frontier-high`: exactly one high-risk boundary.
 - `frontier-xhigh`: two or more independent high-risk boundaries, or two or more failed fix/review cycles for the same behavior.
 
@@ -75,20 +76,28 @@ Risk evidence:
 Review packet:
 <git status, relevant diff, verification already run, skipped checks, and relevant repo instructions/docs/ADRs>
 
-Please review for:
+Review along two separate axes and report each under its own heading. Do not merge or rerank findings across axes: a diff can pass one axis and fail the other, and keeping them separate stops one axis from masking the other.
+
+Axis 1 — Implementation quality:
 1. Behavioral bugs or regressions.
 2. Missed repository instructions.
 3. Missing or weak tests.
 4. Documentation, ADR, or todo-tracking conflicts.
 5. Verification gaps.
 
-Return findings only, ordered by severity. Each finding must include:
+Axis 2 — Spec fidelity:
+1. Requested behavior that is missing or partial.
+2. Behavior in the diff that was not requested (scope creep).
+3. Behavior that looks implemented but appears wrong against the stated goal.
+
+Return findings only, ordered by severity within each axis. Each finding must include:
 - Severity: P0/P1/P2/P3
+- Whether it is a hard violation (contradicts documented instructions, tests, or observed behavior) or a judgement call
 - File and line if possible
 - Why it matters
 - Suggested fix
 
-Avoid style nits unless they indicate a real correctness, maintainability, or process risk.
+Report everything you find, including low-severity issues. Do not self-filter by severity or suppress findings you consider minor; the parent agent filters findings in a separate pass.
 ```
 
 ## Output Use

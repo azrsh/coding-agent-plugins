@@ -20,7 +20,9 @@ Accept one of these routes from the calling skill:
 - `frontier-xhigh`: Resolve the frontier model class with xhigh reasoning.
 
 Let the calling skill own route eligibility and its role-specific classification evidence. Do not reinterpret, upgrade,
-or downgrade a requested route based on task subject, file count, boundary count, or prior attempts. No route authorizes
+or downgrade a requested route based on task subject, file count, boundary count, or prior attempts. When a spawn
+request arrives without a route — for example from a skill that does not classify difficulty — the parent classifies it
+before spawning and records the evidence; default to `frontier-medium` when no classification evidence points elsewhere. No route authorizes
 outsourcing unresolved architecture, ownership, lifecycle, persistence, provider side-effect, or task/action state
 decisions; keep those decisions parent-owned.
 
@@ -72,6 +74,16 @@ three children at once.
 
 Completed agents require no close operation. Interrupt only abandoned work and verify that it is no longer running before
 reusing its slot.
+
+## Worker Lifecycle
+
+Prefer asynchronous handling over blocking on each spawn: continue non-overlapping parent work while children run, and
+collect results when the next parent step depends on them.
+
+A worker may stay alive across sequential subtasks within the same ownership slice and route; continuing an existing
+worker preserves its context and costs less than a fresh spawn. Do not reuse a worker across ownership slices, do not
+continue a worker whose subtask needs a different route, and never reuse any agent as a reviewer: reviewers always
+start fresh, because independent context is what makes their review worth having.
 
 ## Escalation
 

@@ -36,13 +36,21 @@ Order the stack by dependency so identity and producer changes land before
 their consumers. Each PR should have one immediate base, one reviewer question,
 an expected direct diff, and checks that prove its intermediate state.
 
+Build the stack on GitHub's native base-branch chaining rather than a
+separate stacking tool: open each PR with its base set to the previous PR's
+branch (`gh pr create --base <previous-branch>`), not the repository default
+branch. This keeps the diff, checks, and merge queue scoped to the direct
+change at every level without external tooling.
+
 Judge a stacked PR against its immediate base rather than only against the
 repository default branch. Bulk imports, renames, and generated output should
 not obscure unrelated schema or behavioral changes.
 
-When a predecessor merges, update the remaining branch ancestry and recheck
-the direct diff and description. The dependency note must describe the current
-stack rather than its historical arrangement.
+When a predecessor merges, GitHub retargets any open PR based on that branch
+onto the predecessor's own base automatically — treat that retarget as the
+trigger to update the remaining branch ancestry and recheck the direct diff
+and description. The dependency note must describe the current stack rather
+than its historical arrangement.
 
 ## Completion Standard
 

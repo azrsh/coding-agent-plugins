@@ -10,7 +10,9 @@ registered twice.
 | Plugin | Contents |
 | --- | --- |
 | `subagent-orchestration` | `subagent-routing`, `planning-sidecar`, `parallel-implementation`, `self-review` |
-| `engineering-practices` | `documentation-principles`, `adr`, `abstraction-boundaries`, `retrospective-capture`, `reviewable-change-stacking` |
+| `engineering-practices` | `maintained-artifact-principle`, `change-shaping`, `documentation-principles`, `adr`, `abstraction-boundaries`, `retrospective-capture`, `review-feedback-disposition`, `reviewable-change-stacking` |
+| `agent-authoring` | `modernize-agents-md` |
+| `technical-communication` | `architecture-diagramming` |
 
 ## Register the marketplace
 
