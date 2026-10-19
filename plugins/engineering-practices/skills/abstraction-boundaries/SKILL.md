@@ -1,6 +1,6 @@
 ---
 name: abstraction-boundaries
-description: Use before introducing or broadening shared abstractions, normalization layers, provider-neutral models, cross-provider schemas, common lifecycle models, or generalized domain objects. Helps separate common lifecycle concerns from domain semantics that may not actually be shared.
+description: Use before introducing or broadening shared abstractions, normalization layers, provider-neutral models, cross-provider schemas, common lifecycle models, generalized domain objects, or a rule, policy or configuration schema meant to express cases beyond today's. Helps separate common lifecycle concerns from domain semantics that may not actually be shared.
 ---
 
 # Abstraction Boundaries
@@ -19,7 +19,7 @@ Domain semantics include identities, ownership, tenancy, actor, conversation, th
 
 ## Workflow
 
-1. Name the concrete domains being unified. Use at least three examples when the abstraction is meant to grow beyond the current provider or workflow.
+1. Name the concrete domains being unified. Use at least three examples when the abstraction is meant to grow beyond the current provider or workflow, including every future case the user has already named, and express each one in the proposed shape before presenting it.
 2. For every proposed common field or type, ask whether it is a lifecycle concern, an operational concern, or a semantic claim.
 3. Keep source-of-truth data in its native form when the semantics are provider-specific or externally owned.
 4. Treat extracted references, metadata, display fields, and summaries as projections. State whether each projection exists for routing, indexing, UI, task linking, action execution, or debugging.
