@@ -1,6 +1,6 @@
 ---
 name: change-shaping
-description: Shape a proposed code or system change when it may add unnecessary maintained surface or when the requirement itself is uncertain. Applies to new components, APIs, durable state, workflows, dependencies, and cross-cutting changes; skip local fixes and implementations already fixed by a governing source.
+description: Shape a proposed code or system change when the requirement is uncertain or a recommendation may add unnecessary maintained surface. Use when moving from research or analysis into design choices, and for new components, APIs, state, configuration, conditional branches, compatibility mechanisms, workflows, dependencies, operational responsibilities, or stronger guarantees; skip local fixes and implementations already fixed by a governing source.
 ---
 
 # Change Shaping
