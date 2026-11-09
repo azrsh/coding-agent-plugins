@@ -36,7 +36,8 @@ Report only what changes future work:
 - Intended invariant: the rule that should have guided the work.
 - Earliest catch: where the direction first became detectably wrong.
 - Guardrail: the smallest process, verification, documentation, instruction,
-  or test change that reduces recurrence.
+  or test change that reduces recurrence, placed with `documentation-principles`:
+  name the trigger that will retrieve it and the container loaded at that trigger.
 - Non-goals: facts already owned by code, tests, decisions, or dated records.
 
 When implementation is requested, apply only the supported guardrail and verify
