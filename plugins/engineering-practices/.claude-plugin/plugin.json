@@ -1,6 +1,6 @@
 {
   "name": "engineering-practices",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Cross-cutting practices for shaping changes, maintaining artifact boundaries and project knowledge, recording decisions, and keeping changes reviewable.",
   "author": {
     "name": "azrsh"
